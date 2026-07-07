@@ -64,7 +64,7 @@ btn.onclick = async () => {
   btn.disabled = true;
   setStatus('กำลังคอมไพล์…');
   try {
-    const src = await (await fetch('/sample.typ')).text();
+    const src = await (await fetch(import.meta.env.BASE_URL + 'sample.typ')).text();
     const t0 = performance.now();
     const pdf = await $typst.pdf({ mainContent: src });
     const ms = Math.round(performance.now() - t0);

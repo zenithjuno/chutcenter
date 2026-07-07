@@ -20,6 +20,7 @@ const savePdfPlugin = {
 };
 
 export default defineConfig({
+  base: '/chutcenter/', // GitHub Pages project site
   server: { port: 5187, host: '127.0.0.1' },
   optimizeDeps: { exclude: ['@myriaddreamin/typst-ts-web-compiler', '@myriaddreamin/typst-ts-renderer'] },
   plugins: [savePdfPlugin],

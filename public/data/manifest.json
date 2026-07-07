@@ -1,0 +1,143 @@
+{
+  "format_version": "1.0",
+  "sources": [
+    {
+      "slug": "nu-science",
+      "name_th": "สัปดาห์วิทย์ ม.น.",
+      "name_full_th": "สัปดาห์วิทยาศาสตร์ มหาวิทยาลัยนเรศวร (คัดเลือก ม.ปลาย)",
+      "rounds_per_year": 1
+    }
+  ],
+  "topics": [
+    {
+      "slug": "set",
+      "name_th": "เซต"
+    },
+    {
+      "slug": "logic",
+      "name_th": "ตรรกศาสตร์"
+    },
+    {
+      "slug": "real-numbers",
+      "name_th": "จำนวนจริง"
+    },
+    {
+      "slug": "relations-functions",
+      "name_th": "ความสัมพันธ์และฟังก์ชัน"
+    },
+    {
+      "slug": "analytic-geometry-conics",
+      "name_th": "เรขาคณิตวิเคราะห์และภาคตัดกรวย"
+    },
+    {
+      "slug": "trigonometry",
+      "name_th": "ตรีโกณมิติ"
+    },
+    {
+      "slug": "expo-log",
+      "name_th": "เอกซ์โพเนนเชียลและลอการิทึม"
+    },
+    {
+      "slug": "matrix-systems",
+      "name_th": "เมทริกซ์และระบบสมการ"
+    },
+    {
+      "slug": "vectors",
+      "name_th": "เวกเตอร์"
+    },
+    {
+      "slug": "complex-numbers",
+      "name_th": "จำนวนเชิงซ้อน"
+    },
+    {
+      "slug": "linear-programming",
+      "name_th": "กำหนดการเชิงเส้น"
+    },
+    {
+      "slug": "probability-counting",
+      "name_th": "หลักการนับและความน่าจะเป็น"
+    },
+    {
+      "slug": "statistics",
+      "name_th": "สถิติ"
+    },
+    {
+      "slug": "sequences-series",
+      "name_th": "ลำดับและอนุกรม"
+    },
+    {
+      "slug": "calculus",
+      "name_th": "แคลคูลัส"
+    },
+    {
+      "slug": "number-theory",
+      "name_th": "ทฤษฎีจำนวน"
+    }
+  ],
+  "collections": [
+    {
+      "source": "nu-science",
+      "year_be": 2559,
+      "file": "bank/nu-science-2559.json",
+      "question_count": 30,
+      "audit_summary": {
+        "passed": 30
+      }
+    },
+    {
+      "source": "nu-science",
+      "year_be": 2560,
+      "file": "bank/nu-science-2560.json",
+      "question_count": 30,
+      "audit_summary": {
+        "passed": 30
+      }
+    },
+    {
+      "source": "nu-science",
+      "year_be": 2561,
+      "file": "bank/nu-science-2561.json",
+      "question_count": 30,
+      "audit_summary": {
+        "passed": 30
+      }
+    },
+    {
+      "source": "nu-science",
+      "year_be": 2565,
+      "file": "bank/nu-science-2565.json",
+      "question_count": 30,
+      "audit_summary": {
+        "passed": 30
+      }
+    },
+    {
+      "source": "nu-science",
+      "year_be": 2566,
+      "file": "bank/nu-science-2566.json",
+      "question_count": 30,
+      "audit_summary": {
+        "passed": 30
+      }
+    },
+    {
+      "source": "nu-science",
+      "year_be": 2567,
+      "file": "bank/nu-science-2567.json",
+      "question_count": 30,
+      "audit_summary": {
+        "passed": 30
+      }
+    },
+    {
+      "source": "nu-science",
+      "year_be": 2568,
+      "file": "bank/nu-science-2568.json",
+      "question_count": 30,
+      "audit_summary": {
+        "passed": 29,
+        "resolved": 1
+      }
+    }
+  ]
+}

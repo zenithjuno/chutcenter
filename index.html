@@ -3,25 +3,43 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>chutcenter · typst.ts proof</title>
+    <title>chutcenter · เลือกข้อสอบ</title>
     <style>
-      body { font-family: system-ui, "TH Sarabun New", sans-serif; margin: 0; padding: 24px; color: #1a1a1a; }
+      /* skeleton styling only — visual design comes later */
+      body { font-family: system-ui, "TH Sarabun New", sans-serif; margin: 0; padding: 24px; color: #1a1a1a; max-width: 720px; }
       h1 { font-size: 20px; margin: 0 0 4px; }
-      .sub { color: #666; margin: 0 0 16px; font-size: 14px; }
+      .sub { color: #666; margin: 0 0 20px; font-size: 14px; }
+      .filters { display: grid; gap: 12px; margin-bottom: 16px; }
+      .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      label { min-width: 84px; font-size: 14px; }
+      select { font-size: 15px; padding: 6px 8px; }
+      #count { font-size: 18px; font-weight: bold; margin: 12px 0; min-height: 1.4em; }
       button { font-size: 16px; padding: 10px 18px; border: 0; border-radius: 8px; background: #2a6f2a; color: #fff; cursor: pointer; }
       button:disabled { background: #999; cursor: default; }
-      #status { margin: 12px 0; font-size: 14px; color: #333; min-height: 1.4em; white-space: pre-line; }
-      #view { width: 100%; height: 70vh; border: 1px solid #ddd; border-radius: 8px; margin-top: 12px; background: #fafafa; }
-      a.dl { display: none; margin-left: 12px; font-size: 14px; }
+      #results { margin-top: 16px; font-size: 14px; border-top: 1px solid #ddd; padding-top: 12px; }
+      #results table { border-collapse: collapse; width: 100%; }
+      #results td, #results th { border: 1px solid #e0e0e0; padding: 4px 8px; text-align: left; }
     </style>
   </head>
   <body>
-    <h1>chutcenter · พิสูจน์ typst.ts ในเบราว์เซอร์</h1>
-    <p class="sub">Stage 7 proof — คอมไพล์ข้อสอบจริง 1 ข้อ (2559 ข้อ 20) เป็น PDF สดในเบราว์เซอร์ ด้วยฟอนต์ฝัง</p>
-    <button id="go">คอมไพล์ 1 ข้อ → PDF</button>
-    <a id="dl" class="dl" download="chutcenter-sample.pdf">⬇ ดาวน์โหลด PDF</a>
-    <div id="status">กำลังโหลด typst.ts…</div>
-    <iframe id="view" title="PDF preview"></iframe>
+    <h1>chutcenter · เลือกข้อสอบ</h1>
+    <p class="sub">Stage 8 — เลือกเรื่อง / แหล่งที่มา / ช่วงปี แล้วดูจำนวนข้อที่พบ (นับสดจากคลังจริง)</p>
+
+    <div class="filters">
+      <div class="row"><label for="topic">เรื่อง</label><select id="topic"></select></div>
+      <div class="row"><label for="source">แหล่งที่มา</label><select id="source"></select></div>
+      <div class="row">
+        <label for="yearFrom">ช่วงปี พ.ศ.</label>
+        <select id="yearFrom"></select>
+        <span>ถึง</span>
+        <select id="yearTo"></select>
+      </div>
+    </div>
+
+    <div id="count">กำลังโหลดคลังข้อสอบ…</div>
+    <button id="go" disabled>สร้างชุดข้อสอบ</button>
+    <div id="results"></div>
+
     <script type="module" src="/main.js"></script>
   </body>
 </html>

@@ -12,12 +12,16 @@ const view = document.getElementById('view');
 const dl = document.getElementById('dl');
 const setStatus = (m) => { statusEl.textContent = m; };
 
+// base-relative so fonts resolve under any deploy subpath (e.g. GitHub Pages /chutcenter/).
+// absolute /fonts/... 404s under a subpath, and Typst then silently falls back to its
+// bundled default fonts — Thai renders as tofu boxes while the compile still "succeeds".
+const BASE = import.meta.env.BASE_URL; // trailing-slash guaranteed by Vite
 const FONTS = [
-  '/fonts/STIXTwoMath-Regular.ttf',
-  '/fonts/THSarabunNew-Regular.ttf',
-  '/fonts/THSarabunNew-Bold.ttf',
-  '/fonts/THSarabunNew-Italic.ttf',
-  '/fonts/THSarabunNew-BoldItalic.ttf',
+  BASE + 'fonts/STIXTwoMath-Regular.ttf',
+  BASE + 'fonts/THSarabunNew-Regular.ttf',
+  BASE + 'fonts/THSarabunNew-Bold.ttf',
+  BASE + 'fonts/THSarabunNew-Italic.ttf',
+  BASE + 'fonts/THSarabunNew-BoldItalic.ttf',
 ];
 
 // point the compiler/renderer at the locally-bundled WASM and preload our fonts
@@ -64,7 +68,7 @@ btn.onclick = async () => {
   btn.disabled = true;
   setStatus('กำลังคอมไพล์…');
   try {
-    const src = await (await fetch(import.meta.env.BASE_URL + 'sample.typ')).text();
+    const src = await (await fetch(BASE + 'sample.typ')).text();
     const t0 = performance.now();
     const pdf = await $typst.pdf({ mainContent: src });
     const ms = Math.round(performance.now() - t0);

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>chutcenter · เลือกข้อสอบ</title>
+    <title>chutcenter · สร้างชุดข้อสอบ</title>
     <style>
       /* skeleton styling only — visual design comes later */
-      body { font-family: system-ui, "TH Sarabun New", sans-serif; margin: 0; padding: 24px; color: #1a1a1a; max-width: 720px; }
+      body { font-family: system-ui, "TH Sarabun New", sans-serif; margin: 0; padding: 24px; color: #1a1a1a; max-width: 820px; }
       h1 { font-size: 20px; margin: 0 0 4px; }
       .sub { color: #666; margin: 0 0 20px; font-size: 14px; }
       .filters { display: grid; gap: 12px; margin-bottom: 16px; }
@@ -16,14 +16,14 @@
       #count { font-size: 18px; font-weight: bold; margin: 12px 0; min-height: 1.4em; }
       button { font-size: 16px; padding: 10px 18px; border: 0; border-radius: 8px; background: #2a6f2a; color: #fff; cursor: pointer; }
       button:disabled { background: #999; cursor: default; }
-      #results { margin-top: 16px; font-size: 14px; border-top: 1px solid #ddd; padding-top: 12px; }
-      #results table { border-collapse: collapse; width: 100%; }
-      #results td, #results th { border: 1px solid #e0e0e0; padding: 4px 8px; text-align: left; }
+      #status { margin: 10px 0; font-size: 14px; color: #444; min-height: 1.3em; white-space: pre-line; }
+      #dl { display: none; margin-left: 12px; font-size: 15px; }
+      #view { width: 100%; height: 78vh; border: 1px solid #ddd; border-radius: 8px; margin-top: 14px; background: #fafafa; display: none; }
     </style>
   </head>
   <body>
-    <h1>chutcenter · เลือกข้อสอบ</h1>
-    <p class="sub">Stage 8 — เลือกเรื่อง / แหล่งที่มา / ช่วงปี แล้วดูจำนวนข้อที่พบ (นับสดจากคลังจริง)</p>
+    <h1>chutcenter · สร้างชุดข้อสอบ</h1>
+    <p class="sub">เลือกเรื่อง / แหล่งที่มา / ช่วงปี → สร้างเป็น PDF สดในเบราว์เซอร์ (ฟอนต์ฝัง เปิด/พิมพ์ได้ทุกที่)</p>
 
     <div class="filters">
       <div class="row"><label for="topic">เรื่อง</label><select id="topic"></select></div>
@@ -37,8 +37,12 @@
     </div>
 
     <div id="count">กำลังโหลดคลังข้อสอบ…</div>
-    <button id="go" disabled>สร้างชุดข้อสอบ</button>
-    <div id="results"></div>
+    <div class="row">
+      <button id="go" disabled>สร้างชุดข้อสอบ (PDF)</button>
+      <a id="dl" download>⬇ ดาวน์โหลด PDF</a>
+    </div>
+    <div id="status"></div>
+    <iframe id="view" title="ตัวอย่าง PDF"></iframe>
 
     <script type="module" src="/main.js"></script>
   </body>

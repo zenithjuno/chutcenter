@@ -13,7 +13,11 @@ const BASE = import.meta.env.BASE_URL; // base-relative so assets resolve under 
 const $ = (id) => document.getElementById(id);
 const topicSel = $('topic'), sourceSel = $('source'), yearFromSel = $('yearFrom'), yearToSel = $('yearTo');
 const countEl = $('count'), goBtn = $('go'), statusEl = $('status'), dl = $('dl'), view = $('view');
+const busyEl = $('busy'), noteEl = $('note');
 const setStatus = (m) => { statusEl.textContent = m; };
+// busy=true shows the spinner next to the message (WASM warmup / compiling)
+const setBusy = (busy, m) => { busyEl.classList.toggle('on', busy); if (m !== undefined) statusEl.textContent = m; };
+const setNote = (m) => { noteEl.textContent = m ?? ''; };
 
 // ---- typst.ts: local WASM + base-relative fonts (absolute /fonts 404s under a subpath) ----
 const FONTS = [
@@ -70,8 +74,8 @@ async function generate() {
   const matches = refresh();
   if (!matches.length || !typstReady) return;
   goBtn.disabled = true;
-  setStatus(`กำลังสร้าง PDF … (${matches.length} ข้อ)`);
-  // let the status paint before the (possibly heavy) compile blocks the thread
+  setBusy(true, `กำลังสร้าง PDF … (${matches.length} ข้อ)` + (matches.length > 120 ? ' — ชุดใหญ่ อาจใช้เวลาสัก 1–2 วินาที' : ''));
+  // let the spinner paint before the (possibly heavy) compile blocks the thread
   await new Promise((r) => setTimeout(r, 30));
   try {
     const L = labels(matches);
@@ -83,10 +87,10 @@ async function generate() {
     lastUrl = URL.createObjectURL(new Blob([pdf], { type: 'application/pdf' }));
     view.src = lastUrl; view.style.display = 'block';
     dl.href = lastUrl; dl.download = L.filename; dl.style.display = 'inline';
-    setStatus(`สร้างเสร็จ: ${matches.length} ข้อ · ${(pdf.length / 1048576).toFixed(2)} MB · ${ms} ms → ${L.filename}`);
+    setBusy(false, `สร้างเสร็จ: ${matches.length} ข้อ · ${(pdf.length / 1048576).toFixed(2)} MB · ${ms} ms → ${L.filename}`);
   } catch (e) {
     console.error(e);
-    setStatus('สร้าง PDF ไม่สำเร็จ: ' + (e?.message ?? e));
+    setBusy(false, 'สร้าง PDF ไม่สำเร็จ ลองใหม่อีกครั้ง หรือลดจำนวนข้อลง (รายละเอียด: ' + (e?.message ?? e) + ')');
   } finally {
     goBtn.disabled = currentMatches().length === 0 || !typstReady;
   }
@@ -109,15 +113,18 @@ async function main() {
   goBtn.addEventListener('click', generate);
   refresh();
 
-  // warm up typst.ts (loads WASM); enable generate once ready
-  setStatus('กำลังเตรียมตัวสร้าง PDF (โหลด typst.ts)…');
+  // warm up typst.ts (downloads ~28MB WASM on first visit, then the browser caches it)
+  setBusy(true, 'กำลังเตรียมตัวสร้าง PDF …');
+  setNote('ครั้งแรกดาวน์โหลดตัวสร้าง ~28MB (ครั้งเดียว) — จากนั้นเบราว์เซอร์จะจำไว้ เปิดครั้งต่อไปเร็ว');
   try {
     await $typst.pdf({ mainContent: '#set page(width:auto,height:auto,margin:2pt)\nready' });
     typstReady = true;
-    setStatus('พร้อมสร้าง PDF ✓');
+    setBusy(false, 'พร้อมสร้าง PDF ✓');
+    setNote('');
     refresh();
   } catch (e) {
-    setStatus('เตรียม typst.ts ไม่สำเร็จ: ' + (e?.message ?? e));
+    setBusy(false, 'เตรียมตัวสร้าง PDF ไม่สำเร็จ — ลองรีเฟรชหน้า หรือเช็คสัญญาณเน็ต (รายละเอียด: ' + (e?.message ?? e) + ')');
+    setNote('');
   }
 }
 

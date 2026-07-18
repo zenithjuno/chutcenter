@@ -57,7 +57,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -108,7 +109,8 @@
             "text": " และ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -177,7 +179,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -554,7 +557,8 @@
             "text": " จำนวนสมาชิกของเพาเวอร์เซตของ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "math",
@@ -933,7 +937,8 @@
             "text": "” พิจารณาข้อความต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "latin_text",
@@ -992,7 +997,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "latin_text",
@@ -1012,7 +1018,8 @@
             "text": " มีค่าความจริงเป็นจริง"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -1822,7 +1829,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -2319,7 +2327,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -10295,7 +10304,8 @@
             "text": "ให้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -10391,7 +10401,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -10750,7 +10761,8 @@
             "text": " ซึ่ง"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -10874,7 +10886,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",

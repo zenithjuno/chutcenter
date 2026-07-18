@@ -1,39 +1,35 @@
-// chutcenter Stage 9 — full in-browser document generation.
-// filter → buildDocument (converter S4 + template S6) → typst.ts compile → PDF
-// shown in-page + downloadable. WASM + fonts served locally (no CDN, offline-capable).
-import { $typst } from '@myriaddreamin/typst.ts/dist/esm/contrib/snippet.mjs';
-import { preloadRemoteFonts } from '@myriaddreamin/typst.ts';
-import compilerWasmUrl from '@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm?url';
-import rendererWasmUrl from '@myriaddreamin/typst-ts-renderer/pkg/typst_ts_renderer_bg.wasm?url';
+// chutcenter Stage 4 — full in-browser document generation, LaTeX-default.
+// filter → buildDocumentLatex → BusyTeX compile (in a worker) → PDF, shown in-page +
+// downloadable. Typst is a LAZY fallback: its ~28MB chunk loads ONLY if a LaTeX compile
+// fails, then we retry with Typst so the user still gets a PDF. Engine assets + fonts are
+// served locally (no CDN). Live site behaviour changes only at the Stage 7 publish gate.
+import { LatexCompiler } from './src/latex/latex_compiler.js';
+import { buildDocumentLatex } from './src/generator/template/build_document_latex.mjs';
 import { loadBank } from './src/loadBank.js';
 import { filterQuestions } from './src/filter.js';
-import { buildDocument } from './src/generator/template/build_document.mjs';
 
-const BASE = import.meta.env.BASE_URL; // base-relative so assets resolve under /chutcenter/
 const $ = (id) => document.getElementById(id);
 const topicSel = $('topic'), sourceSel = $('source'), yearFromSel = $('yearFrom'), yearToSel = $('yearTo');
 const countEl = $('count'), goBtn = $('go'), statusEl = $('status'), dl = $('dl'), view = $('view');
 const busyEl = $('busy'), noteEl = $('note');
 const setStatus = (m) => { statusEl.textContent = m; };
-// busy=true shows the spinner next to the message (WASM warmup / compiling)
 const setBusy = (busy, m) => { busyEl.classList.toggle('on', busy); if (m !== undefined) statusEl.textContent = m; };
 const setNote = (m) => { noteEl.textContent = m ?? ''; };
 
-// ---- typst.ts: local WASM + base-relative fonts (absolute /fonts 404s under a subpath) ----
-const FONTS = [
-  BASE + 'fonts/STIXTwoMath-Regular.ttf',
-  BASE + 'fonts/THSarabunNew-Regular.ttf',
-  BASE + 'fonts/THSarabunNew-Bold.ttf',
-  BASE + 'fonts/THSarabunNew-Italic.ttf',
-  BASE + 'fonts/THSarabunNew-BoldItalic.ttf',
-];
-$typst.setCompilerInitOptions({ getModule: () => compilerWasmUrl, beforeBuild: [preloadRemoteFonts(FONTS)] });
-$typst.setRendererInitOptions({ getModule: () => rendererWasmUrl });
+// ---- engine flag (debug): ?engine=typst forces the fallback; ?engine=fail makes LaTeX
+//      throw so the fallback path can be demoed; default = latex. ----
+const ENGINE = new URLSearchParams(location.search).get('engine') || 'latex';
 
 let bank = [];
 let topicName = {};
-let typstReady = false;
 let lastUrl = null;
+
+// The LaTeX engine and a promise that resolves once it is warmed up (mounted + primed to
+// steady state). generate() awaits this so a click during warm-up just waits, never errors.
+const latex = new LatexCompiler();
+let engineReady = false;
+let readyResolve, readyReject;
+const ready = new Promise((res, rej) => { readyResolve = res; readyReject = rej; });
 
 const opt = (value, label) => { const o = document.createElement('option'); o.value = value; o.textContent = label; return o; };
 
@@ -42,7 +38,6 @@ function criteria() {
 }
 
 function currentMatches() {
-  // keep the range coherent (never inverted)
   if (Number(yearFromSel.value) > Number(yearToSel.value)) {
     if (document.activeElement === yearFromSel) yearToSel.value = yearFromSel.value;
     else yearFromSel.value = yearToSel.value;
@@ -53,11 +48,10 @@ function currentMatches() {
 function refresh() {
   const m = currentMatches();
   countEl.textContent = `พบ ${m.length} ข้อ`;
-  goBtn.disabled = m.length === 0 || !typstReady;
+  goBtn.disabled = m.length === 0 || !engineReady;
   return m;
 }
 
-// ---- derive title / subtitle / filename from the selection + the actual matched years ----
 function labels(matches) {
   const topicLabel = topicSel.value === 'all' ? 'รวมหลายหัวข้อ' : (topicName[topicSel.value] ?? topicSel.value);
   const years = [...new Set(matches.map((q) => q.year_be))].sort((a, b) => a - b);
@@ -66,33 +60,86 @@ function labels(matches) {
     titleLine1: 'ข้อสอบสัปดาห์วิทย์ ม.น. ม.ปลาย',
     subtitleLine: `${topicLabel} · ปี ${yr}`,
     answerSlug: `${topicLabel} · ปี ${yr}`,
+    topicLabel,
     filename: `chutcenter_${topicLabel}_${yr}.pdf`.replace(/\s+/g, ''),
   };
 }
 
+// Compile via LaTeX; on ANY LaTeX failure, lazy-load Typst and retry so the user still gets
+// a PDF. Returns { pdf, engine } where engine is 'latex' | 'typst'. `?engine=typst` skips
+// straight to the fallback; `?engine=fail` forces the LaTeX attempt to throw (demo).
+async function compilePdf(matches, L) {
+  if (ENGINE !== 'typst') {
+    try {
+      if (ENGINE === 'fail') throw new Error('forced LaTeX failure (?engine=fail)');
+      const src = buildDocumentLatex(matches, { titleLine1: L.titleLine1, subtitleLine: L.subtitleLine, answerSlug: L.answerSlug, topicLabel: L.topicLabel });
+      const { pdf } = await latex.compile(src);
+      return { pdf, engine: 'latex' };
+    } catch (e) {
+      console.warn('LaTeX compile failed, falling back to Typst:', e);
+      setNote('ตัวสร้างหลักมีปัญหา กำลังใช้ตัวสำรอง (Typst) …');
+    }
+  }
+  const { compileTypst } = await import('./src/typst_fallback.js'); // lazy — heavy chunk
+  const pdf = await compileTypst(matches, { titleLine1: L.titleLine1, subtitleLine: L.subtitleLine, answerSlug: L.answerSlug });
+  return { pdf, engine: 'typst' };
+}
+
 async function generate() {
   const matches = refresh();
-  if (!matches.length || !typstReady) return;
+  if (!matches.length) return;
   goBtn.disabled = true;
-  setBusy(true, `กำลังสร้าง PDF … (${matches.length} ข้อ)` + (matches.length > 120 ? ' — ชุดใหญ่ อาจใช้เวลาสัก 1–2 วินาที' : ''));
-  // let the spinner paint before the (possibly heavy) compile blocks the thread
-  await new Promise((r) => setTimeout(r, 30));
+  if (!engineReady) {
+    setBusy(true, 'กำลังเตรียมตัวสร้าง PDF ครั้งแรก … รอสักครู่');
+    try { await ready; } catch (e) { /* warm-up failed → compilePdf will fall back to Typst */ }
+  }
+  setBusy(true, `กำลังสร้าง PDF … (${matches.length} ข้อ)`);
+  await new Promise((r) => setTimeout(r, 30)); // let the spinner paint
   try {
     const L = labels(matches);
-    const src = buildDocument(matches, { titleLine1: L.titleLine1, subtitleLine: L.subtitleLine, answerSlug: L.answerSlug });
     const t0 = performance.now();
-    const pdf = await $typst.pdf({ mainContent: src });
+    const { pdf, engine } = await compilePdf(matches, L);
     const ms = Math.round(performance.now() - t0);
     if (lastUrl) URL.revokeObjectURL(lastUrl);
     lastUrl = URL.createObjectURL(new Blob([pdf], { type: 'application/pdf' }));
     view.src = lastUrl; view.style.display = 'block';
     dl.href = lastUrl; dl.download = L.filename; dl.style.display = 'inline';
-    setBusy(false, `สร้างเสร็จ: ${matches.length} ข้อ · ${(pdf.length / 1048576).toFixed(2)} MB · ${ms} ms → ${L.filename}`);
+    setNote('');
+    setBusy(false, `สร้างเสร็จ: ${matches.length} ข้อ · ${(pdf.length / 1048576).toFixed(2)} MB · ${ms} ms${engine === 'typst' ? ' · (ตัวสำรอง Typst)' : ''} → ${L.filename}`);
   } catch (e) {
     console.error(e);
+    setNote('');
     setBusy(false, 'สร้าง PDF ไม่สำเร็จ ลองใหม่อีกครั้ง หรือลดจำนวนข้อลง (รายละเอียด: ' + (e?.message ?? e) + ')');
   } finally {
-    goBtn.disabled = currentMatches().length === 0 || !typstReady;
+    goBtn.disabled = currentMatches().length === 0 || !engineReady;
+  }
+}
+
+// Warm the LaTeX engine in the background right after load: init (mount) + a couple of
+// throwaway compiles to get past the WASM JIT ramp, so the user's first real PDF is ~0.8s
+// instead of ~10s. The loading line tells them what's happening (never looks frozen).
+async function prewarm() {
+  if (ENGINE === 'typst') { engineReady = true; readyResolve(); setBusy(false, 'พร้อมสร้าง PDF ✓ (โหมด Typst)'); refresh(); return; }
+  setBusy(true, 'กำลังเตรียมตัวสร้าง PDF …');
+  setNote('ครั้งแรกเตรียมตัวสร้างสักครู่ (โหลด ~53MB ครั้งเดียว แล้วเบราว์เซอร์จำไว้) — เปิดครั้งต่อไปเร็ว');
+  try {
+    await latex.init();
+    // prime to steady state with a tiny real doc (first 1–2 questions)
+    const primeDoc = buildDocumentLatex(bank.slice(0, Math.min(2, bank.length)), labels(bank.slice(0, 2)));
+    for (let i = 0; i < 2; i++) { try { await latex.compile(primeDoc); } catch (e) { /* JIT ramp; ignore */ } }
+    engineReady = true;
+    readyResolve();
+    setBusy(false, 'พร้อมสร้าง PDF ✓');
+    setNote('');
+    refresh();
+  } catch (e) {
+    // Engine could not warm up. Don't hard-fail: let generate() fall back to Typst on demand.
+    console.error('LaTeX warm-up failed:', e);
+    engineReady = true; // enable the button; compilePdf will use the Typst fallback
+    readyResolve();
+    setBusy(false, 'พร้อมสร้าง PDF ✓ (จะใช้ตัวสำรองหากจำเป็น)');
+    setNote('');
+    refresh();
   }
 }
 
@@ -113,19 +160,7 @@ async function main() {
   goBtn.addEventListener('click', generate);
   refresh();
 
-  // warm up typst.ts (downloads ~28MB WASM on first visit, then the browser caches it)
-  setBusy(true, 'กำลังเตรียมตัวสร้าง PDF …');
-  setNote('ครั้งแรกดาวน์โหลดตัวสร้าง ~28MB (ครั้งเดียว) — จากนั้นเบราว์เซอร์จะจำไว้ เปิดครั้งต่อไปเร็ว');
-  try {
-    await $typst.pdf({ mainContent: '#set page(width:auto,height:auto,margin:2pt)\nready' });
-    typstReady = true;
-    setBusy(false, 'พร้อมสร้าง PDF ✓');
-    setNote('');
-    refresh();
-  } catch (e) {
-    setBusy(false, 'เตรียมตัวสร้าง PDF ไม่สำเร็จ — ลองรีเฟรชหน้า หรือเช็คสัญญาณเน็ต (รายละเอียด: ' + (e?.message ?? e) + ')');
-    setNote('');
-  }
+  prewarm(); // background — do not await; the UI is usable while it warms
 }
 
 main().catch((e) => { countEl.textContent = 'โหลดคลังไม่สำเร็จ: ' + (e?.message ?? e); console.error(e); });

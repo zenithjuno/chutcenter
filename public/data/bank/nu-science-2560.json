@@ -401,7 +401,8 @@
             "text": "กำหนดให้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -468,7 +469,8 @@
             "text": "”"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -518,7 +520,8 @@
             "text": "”"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -2285,7 +2288,8 @@
             "text": "พิจารณาความสัมพันธ์"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -2370,7 +2374,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -5223,7 +5228,8 @@
             "text": " เป็นผลเฉลยของระบบสมการ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -5257,7 +5263,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -5290,7 +5297,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -8195,7 +8203,8 @@
             "text": " ตามลำดับ แล้วพิจารณาข้อความต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "latin_text",
@@ -8229,7 +8238,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "latin_text",
@@ -8284,7 +8294,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -12692,7 +12703,8 @@
             "text": " จงพิจารณาข้อความต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -12769,7 +12781,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -12848,7 +12861,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -13186,7 +13200,8 @@
             "text": " แทนแต้มที่ได้จากการทอดลูกเต๋าครั้งที่ 1, 2 และ 3 ตามลำดับ จงพิจารณาข้อความต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -13206,7 +13221,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -13277,7 +13293,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -13299,7 +13316,8 @@
             "text": " เป็นจำนวนคู่"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -13321,7 +13339,8 @@
             "text": " เป็นจำนวนเฉพาะ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -14571,7 +14590,8 @@
             "text": " เป็นไปตามนิยามต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -14635,7 +14655,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",

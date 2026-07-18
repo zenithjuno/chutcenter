@@ -5338,7 +5338,8 @@
             "text": "เซตของผลเฉลยของอสมการ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -5443,7 +5444,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -5923,7 +5925,8 @@
             "text": "ผลคูณของผลเฉลยทั้งหมดของสมการ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -5989,7 +5992,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -10111,7 +10115,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -10815,7 +10820,8 @@
                 "text": "ดังนั้นเมื่อใช้รากจริงของจำนวนลบที่มีดัชนีคี่ จะได้"
               },
               {
-                "type": "line_break"
+                "type": "line_break",
+                "break": "hard"
               },
               {
                 "type": "math",
@@ -11079,7 +11085,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -13149,7 +13156,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -13808,7 +13816,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",

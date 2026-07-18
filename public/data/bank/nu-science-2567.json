@@ -12963,7 +12963,8 @@
             "text": " เป็นคำตอบของระบบสมการเชิงเส้น"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -12997,7 +12998,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -13031,7 +13033,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",

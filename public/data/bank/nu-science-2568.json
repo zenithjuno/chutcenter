@@ -744,7 +744,8 @@
             "text": " คน ที่ทานผักเพียงชนิดเดียวเท่านั้น ในการสำรวจนักกีฬาที่ทานผัก พบว่า"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -762,7 +763,8 @@
             "text": " คน ทานคะน้าและกะหล่ำปลี"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -780,7 +782,8 @@
             "text": " คน ทานกะหล่ำปลีและกวางตุ้ง"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -798,7 +801,8 @@
             "text": " คน ทานกวางตุ้งกับคะน้า"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -816,7 +820,8 @@
             "text": " คน"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -1252,7 +1257,8 @@
             "text": " เป็นประพจน์ พิจารณาข้อความต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -1310,7 +1316,8 @@
             "text": " มีค่าความจริงเป็นจริง"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -1389,7 +1396,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -2403,7 +2411,8 @@
             "text": "พิจารณาข้อความต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -2479,7 +2488,8 @@
             "text": " เป็นฟังก์ชัน"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -2581,7 +2591,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -2620,7 +2631,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -4007,7 +4019,8 @@
             "text": " และจุดศูนย์กลางของวงกลมนี้อยู่บนเส้นตรง"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "math",
@@ -7056,7 +7069,8 @@
             "text": " หน่วย ตามลำดับ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -7751,7 +7765,8 @@
             "text": " พิจารณาข้อความต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -7798,7 +7813,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -7841,7 +7857,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -7970,7 +7987,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -10466,7 +10484,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -11399,7 +11418,8 @@
             "text": " และ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "math",
@@ -11452,7 +11472,8 @@
             "text": " มีค่าน้อยที่สุด"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -11533,7 +11554,8 @@
             "text": " และ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -11584,7 +11606,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -11649,7 +11672,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -14759,7 +14783,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -15355,7 +15380,8 @@
             "text": "จากระบบสมการเชิงเส้น"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -15373,7 +15399,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -15391,7 +15418,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",

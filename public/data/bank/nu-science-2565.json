@@ -1001,7 +1001,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "soft"
           },
           {
             "type": "text",
@@ -7842,7 +7843,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -9389,7 +9391,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -10157,7 +10160,8 @@
             "text": " ดังนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -10321,7 +10325,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -13454,7 +13459,8 @@
             "text": " เป็นจำนวนจริงที่สอดคล้องกับระบบสมการ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -13573,7 +13579,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",

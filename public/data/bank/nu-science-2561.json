@@ -89,7 +89,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -180,7 +181,8 @@
             "text": " แล้ว"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -799,7 +801,8 @@
             "text": "ให้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -866,7 +869,8 @@
             "text": " เป็นจำนวนจริงใด ๆ”"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -921,7 +925,8 @@
             "text": "”"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -2032,7 +2037,8 @@
             "text": " และสอดคล้องกับเงื่อนไขต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "latin_text",
@@ -2087,7 +2093,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "latin_text",
@@ -2142,7 +2149,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "latin_text",
@@ -2201,7 +2209,8 @@
             "text": " และ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "latin_text",
@@ -2256,7 +2265,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -7933,7 +7943,8 @@
             "text": " แล้วพิจารณาข้อความต่อไปนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -7995,7 +8006,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -8029,7 +8041,8 @@
             "text": " เป็นเวกเตอร์หน่วย"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -9526,7 +9539,8 @@
             "text": " ของลำดับเลขคณิตลำดับหนึ่ง คือ"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -9556,7 +9570,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -9676,7 +9691,8 @@
                 "text": " จะได้"
               },
               {
-                "type": "line_break"
+                "type": "line_break",
+                "break": "hard"
               },
               {
                 "type": "math",
@@ -9918,7 +9934,8 @@
                 "text": " จึงได้"
               },
               {
-                "type": "line_break"
+                "type": "line_break",
+                "break": "hard"
               },
               {
                 "type": "math",
@@ -12968,7 +12985,8 @@
             "text": " ค่า เรียงจากน้อยไปมาก ได้ดังนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -12994,7 +13012,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
@@ -13334,7 +13353,8 @@
             "text": " เดือน เป็นดังนี้"
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "math",
@@ -13364,7 +13384,8 @@
             }
           },
           {
-            "type": "line_break"
+            "type": "line_break",
+            "break": "hard"
           },
           {
             "type": "text",
